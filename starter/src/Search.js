@@ -3,11 +3,9 @@ const Search = () => {
     return (
         <div>
             <div>
-                <Link className="close-search" to='/'> Close </Link>
-            </div>
-            <div>
                 <div className="search-books">
                     <div className="search-books-bar">
+                        <Link className="close-search" to='/'></Link>
                         <div className="search-books-input-wrapper">
                         <input
                             type="text"
