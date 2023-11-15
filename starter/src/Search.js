@@ -11,7 +11,6 @@ const Search = ({ books, updateBookShelf }) => {
         const handleSearch = async() => {
             try {
                 const result = await BooksAPI.search(searchWord);
-                console.log(result);
                 if (result.error) {
                     setSearchError(true);
                     setSearchResult([]);
