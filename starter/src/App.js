@@ -13,7 +13,6 @@ function App() {
     { id: 'read', title: 'Read'}
   ];
   useEffect(() => {
-    console.log('useEffect');
     const getBooks = async () => {
       const response = await BooksAPI.getAll();
       console.log(response);
@@ -23,10 +22,28 @@ function App() {
 
   }, []);
 
+  const updateBookShelf = async(book, shelf) => {
+    try {
+      const response = await BooksAPI.update(book, shelf);
+      console.log(response);
+      setBooks(prevBooks => {
+        const newBooks = prevBooks.map(prevBook => {
+          if (prevBook.id === book.id) {
+            return { ...prevBook, shelf };
+          }
+          return prevBook;
+        });
+        return newBooks;
+      });
+    } catch (error) {
+      console.error('Error updateing book shelf', error);
+    }
+  }
+
   return (
     <Routes>
-      <Route exact path="/" element={<BookShelves books={books} shelves={shelves} />} />
-      <Route exact path="/search" element={<Search />} />
+      <Route exact path="/" element={<BookShelves books={books} shelves={shelves} updateBookShelf={updateBookShelf} />} />
+      <Route exact path="/search" element={<Search updateBookShelf={updateBookShelf} />} />
     </Routes>
   );
 }

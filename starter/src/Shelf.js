@@ -1,5 +1,5 @@
 import Book from "./Book";
-const Shelf = ({ shelf, books }) => {
+const Shelf = ({ shelf, books, updateBookShelf }) => {
     return (
         <div className="list-books-content">
             <div>
@@ -11,10 +11,9 @@ const Shelf = ({ shelf, books }) => {
                                 return(
                                     <li key={book.id}>
                                         <Book
-                                            title={book.title}
-                                            authors={book.authors.join(', ')}
-                                            imageUrl={book.imageLinks.thumbnail}
-                                            />
+                                            book = {book}
+                                            updateBookShelf = {updateBookShelf}
+                                        />
                                     </li>
                                 );
                             })}
