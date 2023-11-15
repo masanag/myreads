@@ -9,15 +9,19 @@ const Search = ({ books, updateBookShelf }) => {
     const [searchError, setSearchError] = useState(false);
     useEffect(() => {
         const handleSearch = async() => {
-            const result = await BooksAPI.search(searchWord);
-            console.log(result);
             try {
+                const result = await BooksAPI.search(searchWord);
+                console.log(result);
                 if (result.error) {
                     setSearchError(true);
-                    setSearchResult();
+                    setSearchResult([]);
                 } else {
                     setSearchError(false);
-                    setSearchResult(result);
+                    const updatedResult = result.map((searchedBook) => {
+                        const book = books.find(book => book.id === searchedBook.id)
+                        return { ...searchedBook, shelf: book?.shelf || 'none' };
+                    });
+                    setSearchResult(updatedResult);
                 }
 
             } catch (error) {
@@ -32,7 +36,7 @@ const Search = ({ books, updateBookShelf }) => {
             setSearchResult([]);
             setSearchError(false);
         }
-    }, [searchWord]);
+    }, [searchWord, books]);
 
 
     return (
