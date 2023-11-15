@@ -43,7 +43,7 @@ function App() {
   return (
     <Routes>
       <Route exact path="/" element={<BookShelves books={books} shelves={shelves} updateBookShelf={updateBookShelf} />} />
-      <Route exact path="/search" element={<Search updateBookShelf={updateBookShelf} />} />
+      <Route exact path="/search" element={<Search books={books} updateBookShelf={updateBookShelf} />} />
     </Routes>
   );
 }

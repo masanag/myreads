@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Shelf from "./Shelf";
 const BookShelves = ({ books, shelves, updateBookShelf }) => {
