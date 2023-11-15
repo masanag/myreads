@@ -11,7 +11,6 @@ const BookShelves = ({ books, shelves, updateBookShelf }) => {
                     </div>
                     { shelves.map((shelf) => {
                         const booksForShelf = books.filter(book => book.shelf === shelf.id)
-                        console.log(booksForShelf);
                         return <Shelf key={shelf.id} shelf={shelf} books={booksForShelf} updateBookShelf={updateBookShelf} />
                     })}
 

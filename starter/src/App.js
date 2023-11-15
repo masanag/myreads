@@ -15,7 +15,6 @@ function App() {
   useEffect(() => {
     const getBooks = async () => {
       const response = await BooksAPI.getAll();
-      console.log(response);
       setBooks(response);
     }
     getBooks();
@@ -24,8 +23,7 @@ function App() {
 
   const updateBookShelf = async(book, shelf) => {
     try {
-      const response = await BooksAPI.update(book, shelf);
-      console.log(response);
+      await BooksAPI.update(book, shelf);
       setBooks(prevBooks => {
         const newBooks = prevBooks.map(prevBook => {
           if (prevBook.id === book.id) {
