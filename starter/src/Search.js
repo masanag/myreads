@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Book from './Book';
 import * as BooksAPI from "./BooksAPI";
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const Search = ({ books, updateBookShelf }) => {
     const [searchWord, setSearchWord] = useState('');
@@ -76,4 +77,17 @@ const Search = ({ books, updateBookShelf }) => {
         </div>
     );
 };
+
+Search.propTypes = {
+    books: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        authors: PropTypes.arrayOf(PropTypes.string),
+        imageLinks: PropTypes.shape({
+            thumbnail: PropTypes.string,
+        }),
+    })).isRequired,
+    updateBookShelf: PropTypes.func.isRequired,
+}
+
 export default Search;

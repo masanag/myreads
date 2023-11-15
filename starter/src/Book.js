@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 const Book = ({ book, updateBookShelf }) => {
     const [shelf, setShelf] = useState(book.shelf || 'none');
     const handleShelfChange = (e) => {
@@ -37,5 +38,17 @@ const Book = ({ book, updateBookShelf }) => {
 
     );
 }
+
+Book.propTypes = {
+    book: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        authors: PropTypes.arrayOf(PropTypes.string),
+        imageLinks: PropTypes.shape({
+            thumbnail: PropTypes.string,
+        }),
+    }).isRequired,
+    updateBookShelf: PropTypes.func.isRequired,
+};
 
 export default Book;
